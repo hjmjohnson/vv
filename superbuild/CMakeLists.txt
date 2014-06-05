@@ -178,11 +178,13 @@ if(MSVC)
   SET(MAKE_COMMAND "nmake")
 endif(MSVC)
 
+## NOTE: This is the superbuild directory
+get_filename_component(MAIN_VV_SOURCE ${CMAKE_CURRENT_SOURCE_DIR} PATH)
+
 ExternalProject_Add(
   VV
   DEPENDS ${VTK_DEPEND_QT} VTK ITK GDCM
-  SOURCE_DIR ${source_prefix}/vv
-  GIT_REPOSITORY git://git.creatis.insa-lyon.fr/clitk
+  SOURCE_DIR ${MAIN_VV_SOURCE}
   INSTALL_DIR ${install_prefix}
   INSTALL_COMMAND  make install 
   CMAKE_ARGS
